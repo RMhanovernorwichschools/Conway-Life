@@ -18,6 +18,10 @@ class Conway(App):
         for x in range(50):
             for n in range(25):
                 Cell((8.5+20*x, 32+20*n))
+                
+    def step(self):
+        for cell in self.getSpritesbyClass(Cell):
+            cell.step()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
@@ -27,6 +31,12 @@ class Cell(Sprite):
     asset=RectangleAsset(20,20,nl,white)
     def __init__(self, position):
         super().__init__(Cell.asset, position)
+        self.state=0
+    
+    def step(self):
+        if self.state>0:
+            self.Color=black
+        
         
 myapp=Conway()
 myapp.run()
