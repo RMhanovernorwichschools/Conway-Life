@@ -53,7 +53,7 @@ class Cell(Sprite):
         self.shift=0
     
     def edit(self, event):
-        if self.shift=0:
+        if self.shift==0:
             self.statechange=1
         else:
             self.statechange=-1
