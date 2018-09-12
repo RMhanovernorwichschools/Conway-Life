@@ -32,14 +32,31 @@ class Cell(Sprite):
     def __init__(self, position):
         super().__init__(Cell.asset, position)
         self.state=0
-        Conway.listenKeyEvent("keydown", "space", self.on)
+        self.shift=0
+        self.statechange=0
+        Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
+        Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
+        Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
+        self.state+=self.statechange
+        self.statechange=0
         if self.state>0:
-            print('k')
             self.fill=black
-    def on(self, event):
-        self.state=1
+        else:
+            self.fill=white
+            self.state=0
+    
+    def shiftheld(self, event):
+        self.shift=1
+    def shiftrel(self, event):
+        self.shift=0
+    
+    def edit(self, event):
+        if self.shift=0:
+            self.statechange=1
+        else:
+            self.statechange=-1
         
         
 myapp=Conway()
