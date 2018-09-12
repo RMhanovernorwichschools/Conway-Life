@@ -36,8 +36,9 @@ class Cell(Sprite):
     
     def step(self):
         if self.state>0:
-            self.Color=black
-    def on(self):
+            print('k')
+            self.fill=black
+    def on(self, event):
         self.state=1
         
         
