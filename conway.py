@@ -14,3 +14,6 @@ class Conway(App):
         white=Color(0xfff0ff, 1.0)
         black=Color(0x000000, 1.0)
         nl=LineStyle(0, black)
+        
+myapp=Conway()
+myapp.run()
