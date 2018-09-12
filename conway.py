@@ -32,10 +32,13 @@ class Cell(Sprite):
     def __init__(self, position):
         super().__init__(Cell.asset, position)
         self.state=0
+        Conway.listenKeyEvent("keydown", "space", self.on)
     
     def step(self):
         if self.state>0:
             self.Color=black
+    def on(self):
+        self.state=1
         
         
 myapp=Conway()
