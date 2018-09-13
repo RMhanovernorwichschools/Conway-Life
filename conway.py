@@ -18,6 +18,8 @@ class Conway(App):
         for x in range(10):
             for n in range(5):
                 Cell((8.5+100*x, 32+100*n))
+        print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
+        print('Press "Enter" to start')
                 
     def step(self):
         for cell in self.getSpritesbyClass(Cell):
