@@ -44,7 +44,8 @@ class Cell(Sprite):
         self.state+=self.statechange
         self.statechange=0
         if self.state>0:
-            print(self.x)
+            DeadCell=RectangleAsset(95,95,nl,black)
+            Sprite(DeadCell, (self.x, self.y))
         else:
             self.fill=white
             self.state=0
