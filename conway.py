@@ -30,8 +30,10 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        time.sleep(1)
+        cells=[]
         for cell in self.getSpritesbyClass(Cell):
+            cells.append(cell.name)
+            print(cells)
             cell.check()
        
 white=Color(0xfff0ff, 1.0)
@@ -74,6 +76,18 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
-        
+    
+    def check(self):
+        n=0
+        for x in range(len(self.name)):
+            if list(self.name)[x]=='_':
+                n=x
+        xval=''
+        yval=''
+        for x in range(n):
+            xval+=self.name[x]
+        for x in range(len(self.name)-(n+1)):
+            yval+=self.name[x+n+1]
+
 myapp=Conway()
 myapp.run()
