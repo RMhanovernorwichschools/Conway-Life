@@ -105,12 +105,13 @@ class Cell(Sprite):
     def nextgen(self):
         neighbors=0
         yval=int(self.yval)
-        xval.int(self.xval)
+        xval=int(self.xval)
+        print (xval)
         for x in index:
             if x[0]==xval:
                 if x[1]==(yval+1) or x[1]==(yval-1):
                     neighbors+=x[2]
-            if y[0]==yval:
+            if x[0]==yval:
                 if x[1]==(xval+1) or x[1]==(xval-1):
                     neighbors+=x[2]
         print(neighbors)
