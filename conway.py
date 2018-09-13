@@ -39,7 +39,7 @@ class Cell(Sprite):
         Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
-        if self.statechange!=):
+        if self.statechange!=0:
             self.state+=self.statechange
             self.statechange=0
             if self.state>0:
