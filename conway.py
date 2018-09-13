@@ -9,6 +9,9 @@ https://github.com/HHS-IntroProgramming/Conway-Life
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
 import time
 states=[]
+xvals=[]
+yvals=[]
+index=[]
 
 class Conway(App):
     def __init__(self):
@@ -31,13 +34,13 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        cells=[]
+        xvals=[]
+        yvals=[]
         states=[]
         for cell in self.getSpritesbyClass(Cell):
-            cells.append(cell.name)
             cell.check()
-        index=zip(cells,states)
-        print(list(index))
+        for cell in self.getSpritesbyClass(Cell):
+            cell.nextgen()    
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
@@ -51,6 +54,8 @@ class Cell(Sprite):
         self.state=0
         self.shift=0
         self.statechange=0
+        self.xval=''
+        self.yval=''
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
@@ -85,13 +90,28 @@ class Cell(Sprite):
         for x in range(len(self.name)):
             if list(self.name)[x]=='_':
                 n=x
-        xval=''
-        yval=''
+        self.xval=''
+        self.yval=''
         for x in range(n):
-            xval+=self.name[x]
+            self.xval+=self.name[x]
         for x in range(len(self.name)-(n+1)):
-            yval+=self.name[x+n+1]
+            self.yval+=self.name[x+n+1]
+        xvals.append(self.xval)
+        yvals.append(self.yval)
         states.append(self.state)
+        global index
+        index=(list(zip(xvals, yvals, states)))
+        
+    def nextgen(self):
+        neighbors=0
+        for x in index:
+            if x[0]==self.xval:
+                if x[1]==(self.yval+1) or x[1]==(self.yval-1):
+                    neighbors+=x[2]
+            if y[0]==self.yval:
+                if x[1]==(self.xval+1) or x[1]==(self.xval-1):
+                    neighbors+=x[2]
+        print(neighbors)
 
 myapp=Conway()
 myapp.run()
