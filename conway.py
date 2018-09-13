@@ -55,7 +55,7 @@ class Cell(Sprite):
         self.shift=0
     
     def edit(self, event):
-        if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event<(self.y+95):
+        if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event.y<(self.y+95):
             if self.shift==0:
                 self.statechange=1
             else:
