@@ -8,7 +8,6 @@ https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
 import time
-n=0
 
 class Conway(App):
     def __init__(self):
@@ -31,12 +30,9 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        if time.time()<n+1:
-            n=n
-        else:
-            n=time.time()
-            for cell in self.getSpritesbyClass(Cell):
-                cell.check()
+        time.sleep(1)
+        for cell in self.getSpritesbyClass(Cell):
+            cell.check()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
