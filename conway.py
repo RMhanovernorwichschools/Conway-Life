@@ -34,21 +34,21 @@ class Cell(Sprite):
         self.state=0
         self.shift=0
         self.statechange=0
-        DeadCell=RectangleAsset(95,95,nl,black)
-        LiveCell=RectangleAsset(95,95,nl,white)
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
-        self.state+=self.statechange
-        self.statechange=0
-        if self.state>0:
-            DeadCell=RectangleAsset(95,95,nl,black)
-            Sprite(DeadCell, (self.x, self.y))
-        else:
-            self.fill=white
-            self.state=0
+        if self.statechange!=):
+            self.state+=self.statechange
+            self.statechange=0
+            if self.state>0:
+                DeadCell=RectangleAsset(95,95,nl,black)
+                Sprite(DeadCell, (self.x, self.y))
+            else:
+                LiveCell=RectangleAsset(95,95,nl,white)
+                Sprite(LiveCell, (self.x, self.y))
+                self.state=0
     
     def shiftheld(self, event):
         self.shift=1
