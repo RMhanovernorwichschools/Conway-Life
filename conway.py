@@ -34,6 +34,8 @@ class Cell(Sprite):
         self.state=0
         self.shift=0
         self.statechange=0
+        DeadCell=RectangleAsset(95,95,nl,black)
+        LiveCell=RectangleAsset(95,95,nl,white)
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
@@ -42,7 +44,7 @@ class Cell(Sprite):
         self.state+=self.statechange
         self.statechange=0
         if self.state>0:
-            self.fill=black
+            print(self.x)
         else:
             self.fill=white
             self.state=0
@@ -53,11 +55,11 @@ class Cell(Sprite):
         self.shift=0
     
     def edit(self, event):
-        if self.shift==0:
-            self.statechange=1
-        else:
-            self.statechange=-1
-        
+        if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event<(self.y+95):
+            if self.shift==0:
+                self.statechange=1
+            else:
+                self.statechange=-1
         
 myapp=Conway()
 myapp.run()
