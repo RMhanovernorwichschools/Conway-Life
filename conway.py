@@ -107,14 +107,14 @@ class Cell(Sprite):
         yval=int(self.yval)
         xval=int(self.xval)
         for x in index:
-            if x[0]==xval:
+            if int(x[0])==xval:
                 print('FIND!')
-                if x[1]==(yval+1) or x[1]==(yval-1):
+                if int(x[1])==(yval+1) or int(x[1])==(yval-1):
                     neighbors+=x[2]
-            if x[0]==yval:
-                if x[1]==(xval+1) or x[1]==(xval-1):
+            if int(x[0])==yval:
+                if int(x[1])==(xval+1) or int(x[1])==(xval-1):
                     neighbors+=x[2]
-        print(neighbors)
+            print(neighbors)
 
 myapp=Conway()
 myapp.run()
