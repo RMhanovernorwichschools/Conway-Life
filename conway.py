@@ -106,9 +106,9 @@ class Cell(Sprite):
         neighbors=0
         yval=int(self.yval)
         xval=int(self.xval)
-        print (xval)
         for x in index:
             if x[0]==xval:
+                print('FIND!')
                 if x[1]==(yval+1) or x[1]==(yval-1):
                     neighbors+=x[2]
             if x[0]==yval:
