@@ -40,7 +40,7 @@ class Conway(App):
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
-            cell.nextgen()   
+            cell.nextgen()  
         self.step()
        
 white=Color(0xfff0ff, 1.0)
@@ -114,6 +114,7 @@ class Cell(Sprite):
             if int(x[0])==yval:
                 if int(x[1])==(xval+1) or int(x[1])==(xval-1):
                     neighbors+=x[2]
+        global self.state
         if neighbors<2 or neighbors>3:
             self.state=0
         elif neighbors==3:
