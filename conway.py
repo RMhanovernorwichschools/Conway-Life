@@ -34,14 +34,15 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        xvals=[]
-        yvals=[]
-        states=[]
-        for cell in self.getSpritesbyClass(Cell):
-            cell.check()
-        for cell in self.getSpritesbyClass(Cell):
-            cell.nextgen()  
-        self.step()
+        for x in range(3):
+            xvals=[]
+            yvals=[]
+            states=[]
+            for cell in self.getSpritesbyClass(Cell):
+                cell.check()
+            for cell in self.getSpritesbyClass(Cell):
+                cell.nextgen()  
+            self.step()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
