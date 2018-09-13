@@ -7,6 +7,8 @@ Write and submit a program that plays Conway's Game of Life, per
 https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
+import time
+n=0
 
 class Conway(App):
     def __init__(self):
@@ -17,14 +19,24 @@ class Conway(App):
         Sprite(bg,(8.5, 32))
         for x in range(10):
             for n in range(5):
-                Cell((8.5+100*x, 32+100*n))
+                z=str(str(x)+'_'+str(n))
+                Cell((8.5+100*x, 32+100*n), z)
         print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
         print('')
         print('Press "Enter" to start')
+        Conway.listenKeyEvent("keydown", "enter", self.start)
                 
     def step(self):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
+    
+    def start(self, event):
+        if time.time()<n+1:
+            n=n
+        else:
+            n=time.time()
+            for cell in self.getSpritesbyClass(Cell):
+                cell.check()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
@@ -32,8 +44,9 @@ nl=LineStyle(0, black)
 
 class Cell(Sprite):
     asset=RectangleAsset(95,95,nl,white)
-    def __init__(self, position):
+    def __init__(self, position, name):
         super().__init__(Cell.asset, position)
+        self.name=name
         self.state=0
         self.shift=0
         self.statechange=0
@@ -45,7 +58,6 @@ class Cell(Sprite):
         if self.statechange!=0:
             self.state+=self.statechange
             self.statechange=0
-            print('Population={0}'.format(self.state))
             if self.state>0:
                 DeadCell=RectangleAsset(95,95,nl,black)
                 Sprite(DeadCell, (self.x, self.y))
@@ -53,6 +65,7 @@ class Cell(Sprite):
                 LiveCell=RectangleAsset(95,95,nl,white)
                 Sprite(LiveCell, (self.x, self.y))
                 self.state=0
+            print('Population here={0}'.format(self.state))
     
     def shiftheld(self, event):
         self.shift=1
