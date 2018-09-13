@@ -113,6 +113,10 @@ class Cell(Sprite):
             if int(x[0])==yval:
                 if int(x[1])==(xval+1) or int(x[1])==(xval-1):
                     neighbors+=x[2]
+        if neighbors<2 or neighbors>3:
+            self.state=0
+        elif neighbors==3:
+            self.state=1
 
 myapp=Conway()
 myapp.run()
