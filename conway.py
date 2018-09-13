@@ -8,6 +8,7 @@ https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
 import time
+states=[]
 
 class Conway(App):
     def __init__(self):
@@ -31,10 +32,12 @@ class Conway(App):
     
     def start(self, event):
         cells=[]
+        states=[]
         for cell in self.getSpritesbyClass(Cell):
             cells.append(cell.name)
-            print(cells)
             cell.check()
+        index=zip(cells,states)
+        print(list(index))
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
@@ -59,11 +62,11 @@ class Cell(Sprite):
             if self.state>0:
                 DeadCell=RectangleAsset(95,95,nl,black)
                 Sprite(DeadCell, (self.x, self.y))
+                self.state=1
             else:
                 LiveCell=RectangleAsset(95,95,nl,white)
                 Sprite(LiveCell, (self.x, self.y))
                 self.state=0
-            print('Population here={0}'.format(self.state))
     
     def shiftheld(self, event):
         self.shift=1
@@ -88,6 +91,7 @@ class Cell(Sprite):
             xval+=self.name[x]
         for x in range(len(self.name)-(n+1)):
             yval+=self.name[x+n+1]
+        states.append(self.state)
 
 myapp=Conway()
 myapp.run()
