@@ -15,9 +15,9 @@ class Conway(App):
         thin=LineStyle(1, black)
         bg=RectangleAsset(1000, 500, thin, blank)
         Sprite(bg,(8.5, 32))
-        for x in range(50):
-            for n in range(25):
-                Cell((8.5+20*x, 32+20*n))
+        for x in range(10):
+            for n in range(5):
+                Cell((8.5+100*x, 32+100*n))
                 
     def step(self):
         for cell in self.getSpritesbyClass(Cell):
@@ -28,7 +28,7 @@ black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
-    asset=ImageAsset("images/Tiles.png")
+    asset=RectangleAsset(95,95,nl,white)
     def __init__(self, position):
         super().__init__(Cell.asset, position)
         self.state=0
