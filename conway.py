@@ -40,7 +40,8 @@ class Conway(App):
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
-            cell.nextgen()    
+            cell.nextgen()   
+        self.step()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
