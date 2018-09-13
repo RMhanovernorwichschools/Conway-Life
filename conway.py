@@ -19,6 +19,7 @@ class Conway(App):
             for n in range(5):
                 Cell((8.5+100*x, 32+100*n))
         print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
+        print('')
         print('Press "Enter" to start')
                 
     def step(self):
@@ -44,6 +45,7 @@ class Cell(Sprite):
         if self.statechange!=0:
             self.state+=self.statechange
             self.statechange=0
+            print('Population={0}'.format(self.state))
             if self.state>0:
                 DeadCell=RectangleAsset(95,95,nl,black)
                 Sprite(DeadCell, (self.x, self.y))
