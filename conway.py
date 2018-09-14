@@ -68,13 +68,15 @@ class Cell(Sprite):
             self.state+=self.statechange
             self.statechange=0
             if self.state>0:
-                DeadCell=RectangleAsset(95,95,nl,black)
-                Sprite(DeadCell, (self.x, self.y))
+                LiveCell=RectangleAsset(95,95,nl,black)
+                Sprite(LiveCell, (self.x, self.y))
                 self.state=1
             else:
-                LiveCell=RectangleAsset(95,95,nl,white)
-                Sprite(LiveCell, (self.x, self.y))
+                DeadCell=RectangleAsset(95,95,nl,white)
+                Sprite(DeadCell, (self.x, self.y))
                 self.state=0
+                print(name)
+                print(self.state)
     
     def shiftheld(self, event):
         self.shift=1
@@ -101,7 +103,6 @@ class Cell(Sprite):
             self.yval+=self.name[x+n+1]
         xvals.append(self.xval)
         yvals.append(self.yval)
-        print(self.state)
         states.append(self.state)
         global index
         index=(list(zip(xvals, yvals, states)))
