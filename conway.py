@@ -34,6 +34,7 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
+        global states
         xvals=[]
         yvals=[]
         states=[]
