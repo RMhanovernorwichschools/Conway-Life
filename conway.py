@@ -35,6 +35,7 @@ class Conway(App):
     def start(self, event):
         xvals=[]
         yvals=[]
+        states=[]
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
@@ -88,7 +89,6 @@ class Cell(Sprite):
     
     def check(self):
         n=0
-        states=[]
         for x in range(len(self.name)):
             if list(self.name)[x]=='_':
                 n=x
