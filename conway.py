@@ -42,6 +42,7 @@ class Conway(App):
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen()  
         self.step()
+        print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
