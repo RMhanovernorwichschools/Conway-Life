@@ -8,6 +8,7 @@ https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
 import time
+states=[]
 xvals=[]
 yvals=[]
 index=[]
@@ -100,6 +101,7 @@ class Cell(Sprite):
             self.yval+=self.name[x+n+1]
         xvals.append(self.xval)
         yvals.append(self.yval)
+        print(self.state)
         states.append(self.state)
         global index
         index=(list(zip(xvals, yvals, states)))
