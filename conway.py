@@ -67,7 +67,7 @@ class Cell(Sprite):
     def step(self):
         for x in index:
             if x[0]==self.xval:
-                self.state=index[x][2]
+                self.state=x[2]
         if self.statechange!=0:
             self.state+=self.statechange
             self.statechange=0
@@ -135,11 +135,11 @@ class Cell(Sprite):
         if neighbors<2 or neighbors>3:
             for x in index:
                 if x[0]==self.xval:
-                    index[x][2]=0
+                    x[2]=0
         elif neighbors==3:
             for x in index:
                 if x[0]==self.xval:
-                    index[x][2]=1
+                    x[2]=1
 
 myapp=Conway()
 myapp.run()
