@@ -102,7 +102,7 @@ class Cell(Sprite):
         xvals.append(self.xval)
         yvals.append(self.yval)
         states.append(self.state)
-        print(self.name +' has ' str(self.state))
+        print(self.name +' has ' +str(self.state))
         global index
         index=(list(zip(xvals, yvals, states)))
         
