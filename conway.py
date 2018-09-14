@@ -102,6 +102,7 @@ class Cell(Sprite):
         xvals.append(self.xval)
         yvals.append(self.yval)
         states.append(self.state)
+        print(self.name +' has ' str(self.state))
         global index
         index=(list(zip(xvals, yvals, states)))
         
@@ -128,10 +129,8 @@ class Cell(Sprite):
                 neighbors+=x[2]
         if neighbors<2 or neighbors>3:
             self.statechange=-1
-            print('too few')
         elif neighbors==3:
             self.statechange=1
-            print('too many')
 
 myapp=Conway()
 myapp.run()
