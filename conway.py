@@ -135,11 +135,11 @@ class Cell(Sprite):
         if neighbors<2 or neighbors>3:
             for x in index:
                 if x[0]==self.xval:
-                    x[2]=0
+                    set x[2]=0
         elif neighbors==3:
             for x in index:
                 if x[0]==self.xval:
-                    x[2]=1
+                    set x[2]=1
 
 myapp=Conway()
 myapp.run()
