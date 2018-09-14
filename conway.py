@@ -65,8 +65,6 @@ class Cell(Sprite):
     
     def step(self):
         if self.statechange!=0:
-            print(self.name)
-            print('Has a change')
             self.state+=self.statechange
             self.statechange=0
             if self.state>0:
