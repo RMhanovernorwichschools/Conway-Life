@@ -41,7 +41,6 @@ class Conway(App):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen()  
-            print(cell.name +' has ' +str(cell.state))
         print(index)
         self.step()
         print('Cycle complete')
@@ -69,13 +68,13 @@ class Cell(Sprite):
             self.state+=self.statechange
             self.statechange=0
             if self.state>0:
+                self.state=1
                 LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
-                self.state=1
             else:
+                self.state=0
                 DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
-                self.state=0
     
     def shiftheld(self, event):
         self.shift=1
