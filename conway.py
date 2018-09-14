@@ -34,15 +34,14 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        for x in range(3):
-            xvals=[]
-            yvals=[]
-            states=[]
-            for cell in self.getSpritesbyClass(Cell):
-                cell.check()
-            for cell in self.getSpritesbyClass(Cell):
-                cell.nextgen()  
-            self.step()
+        xvals=[]
+        yvals=[]
+        states=[]
+        for cell in self.getSpritesbyClass(Cell):
+            cell.check()
+        for cell in self.getSpritesbyClass(Cell):
+            cell.nextgen()  
+        self.step()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
@@ -109,12 +108,22 @@ class Cell(Sprite):
         yval=int(self.yval)
         xval=int(self.xval)
         for x in index:
-            if int(x[0])==xval:
-                if int(x[1])==(yval+1) or int(x[1])==(yval-1):
-                    neighbors+=x[2]
-            if int(x[0])==yval:
-                if int(x[1])==(xval+1) or int(x[1])==(xval-1):
-                    neighbors+=x[2]
+            if int(x[0])==xval and int(x[1])==(yval+1):
+                neighbors+=x[2]
+            if int(x[0])==xval and int(x[1])==(yval-1):
+                neighbors+=x[2]
+            if int(x[0])==(xval+1) and int(x[1])==(yval+1):
+                neighbors+=x[2]
+            if int(x[0])==(xval+1) and int(x[1])==(yval-1):
+                neighbors+=x[2]
+            if int(x[0])==(xval+1) and int(x[1])==(yval):
+                neighbors+=x[2]
+            if int(x[0])==(xval-1) and int(x[1])==(yval+1):
+                neighbors+=x[2]
+            if int(x[0])==(xval-1) and int(x[1])==(yval-1):
+                neighbors+=x[2]
+            if int(x[0])==(xval-1) and int(x[1])==(yval):
+                neighbors+=x[2]
         if neighbors<2 or neighbors>3:
             self.statechange=-1
         elif neighbors==3:
