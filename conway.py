@@ -65,6 +65,8 @@ class Cell(Sprite):
     
     def step(self):
         if self.statechange!=0:
+            print(self.name)
+            print('Has a change')
             self.state+=self.statechange
             self.statechange=0
             if self.state>0:
@@ -75,8 +77,6 @@ class Cell(Sprite):
                 DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
                 self.state=0
-                print(name)
-                print(self.state)
     
     def shiftheld(self, event):
         self.shift=1
