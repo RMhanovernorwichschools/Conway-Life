@@ -12,6 +12,7 @@ states=[]
 xvals=[]
 yvals=[]
 index=[]
+rds=0
 
 class Conway(App):
     def __init__(self):
@@ -59,21 +60,22 @@ class Cell(Sprite):
         self.statechange=0
         self.xval=''
         self.yval=''
-        self.life=0
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
+        for x in index:
+            if x[0]==self.xval:
+                self.state=index[x][2]
         if self.statechange!=0:
             self.state+=self.statechange
             self.statechange=0
-            if self.state>0 or self.life==1:
-                self.state=self.life
+            if self.state>0:
                 LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
             else:
-                self.state=self.life
+                self.state=0
                 DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
     
@@ -90,21 +92,24 @@ class Cell(Sprite):
                 self.statechange=-1
     
     def check(self):
-        n=0
-        for x in range(len(self.name)):
-            if list(self.name)[x]=='_':
-                n=x
-        self.xval=''
-        self.yval=''
-        for x in range(n):
-            self.xval+=self.name[x]
-        for x in range(len(self.name)-(n+1)):
-            self.yval+=self.name[x+n+1]
-        xvals.append(self.xval)
-        yvals.append(self.yval)
-        states.append(self.state)
-        global index
-        index=(list(zip(xvals, yvals, states)))
+        global rds
+        if rds==0:
+            n=0
+            for x in range(len(self.name)):
+                if list(self.name)[x]=='_':
+                    n=x
+            self.xval=''
+            self.yval=''
+            for x in range(n):
+                self.xval+=self.name[x]
+            for x in range(len(self.name)-(n+1)):
+                self.yval+=self.name[x+n+1]
+            xvals.append(self.xval)
+            yvals.append(self.yval)
+            states.append(self.state)
+            global index
+            index=(list(zip(xvals, yvals, states)))
+            rds=1
         
     def nextgen(self):
         neighbors=0
@@ -128,9 +133,13 @@ class Cell(Sprite):
             if int(x[0])==(xval-1) and int(x[1])==(yval):
                 neighbors+=x[2]
         if neighbors<2 or neighbors>3:
-            self.life=0
+            for x in index:
+                if x[0]==self.xval:
+                    index[x][2]=0
         elif neighbors==3:
-            self.life=1
+            for x in index:
+                if x[0]==self.xval:
+                    index[x][2]=1
 
 myapp=Conway()
 myapp.run()
