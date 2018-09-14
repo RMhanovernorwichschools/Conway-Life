@@ -41,6 +41,7 @@ class Conway(App):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen()  
+            print(cell.name +' has ' +str(cell.state))
         print(index)
         self.step()
         print('Cycle complete')
@@ -102,7 +103,6 @@ class Cell(Sprite):
         xvals.append(self.xval)
         yvals.append(self.yval)
         states.append(self.state)
-        print(self.name +' has ' +str(self.state))
         global index
         index=(list(zip(xvals, yvals, states)))
         
