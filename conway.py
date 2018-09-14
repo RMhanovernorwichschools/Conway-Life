@@ -59,22 +59,23 @@ class Cell(Sprite):
         self.statechange=0
         self.xval=''
         self.yval=''
+        self.life=0
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
         if self.statechange!=0:
-            self.state=self.statechange
-            if self.state>0:
-                self.state=1
+            self.state+=self.statechange
+            self.statechange=0
+            if self.state>0 or self.life==1:
+                self.state=self.life
                 LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
             else:
-                self.state=0
+                self.state=self.life
                 DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
-            self.statechange=0
     
     def shiftheld(self, event):
         self.shift=1
@@ -127,9 +128,9 @@ class Cell(Sprite):
             if int(x[0])==(xval-1) and int(x[1])==(yval):
                 neighbors+=x[2]
         if neighbors<2 or neighbors>3:
-            self.statechange=-1
+            self.life=0
         elif neighbors==3:
-            self.statechange=1
+            self.life=1
 
 myapp=Conway()
 myapp.run()
