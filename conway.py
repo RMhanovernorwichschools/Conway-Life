@@ -65,8 +65,7 @@ class Cell(Sprite):
     
     def step(self):
         if self.statechange!=0:
-            self.state+=self.statechange
-            self.statechange=0
+            self.state=self.statechange
             if self.state>0:
                 self.state=1
                 LiveCell=RectangleAsset(95,95,nl,black)
@@ -75,6 +74,7 @@ class Cell(Sprite):
                 self.state=0
                 DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
+            self.statechange=0
     
     def shiftheld(self, event):
         self.shift=1
