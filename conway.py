@@ -47,12 +47,14 @@ class Conway(App):
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen() 
         print(index)
-        self.step()
+        self.refresh()
         print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
+
+myapp=Conway()
 
 class Cell(Sprite):
     asset=RectangleAsset(95,95,nl,white)
@@ -93,6 +95,7 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
+        myapp.refresh()
         
     def nextgen(self):
         neighbors=0
@@ -120,5 +123,4 @@ class Cell(Sprite):
         elif neighbors==3:
             self.life=1
 
-myapp=Conway()
 myapp.run()
