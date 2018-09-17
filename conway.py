@@ -27,14 +27,17 @@ class Conway(App):
         print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
         print('')
         print('Press "Enter" to start')
-        Conway.listenKeyEvent("keydown", "enter", self.start)
+        Conway.listenKeyEvent("keydown", "enter", self.initiate)
                 
     def refresh(self):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
+            
+    def initiate(self, event):
+        time.wait(1)
+        myapp.start()
     
-    def start(self, event):
-        for x in range(5)
+    def start(self):
             global index
             index=[]
             xvals=[]
