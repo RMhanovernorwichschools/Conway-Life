@@ -28,9 +28,8 @@ class Conway(App):
         print('')
         print('Press "Enter" to start')
         Conway.listenKeyEvent("keydown", "enter", self.start)
-        Conway.listenMouseEvent("click", self.step)
-              
-    def step(self, event):
+                
+    def step(self):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
     
