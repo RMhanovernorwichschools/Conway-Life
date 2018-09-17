@@ -34,8 +34,8 @@ class Conway(App):
             cell.step()
             
     def initiate(self, event):
-        time.wait(1)
-        self.start()
+        for x in range(4):
+            self.start()
     
     def start(self):
             global index
@@ -50,7 +50,6 @@ class Conway(App):
                 index=(list(zip(xvals, yvals, states)))
             for cell in self.getSpritesbyClass(Cell):
                 cell.nextgen() 
-            print(index)
             self.refresh()
             print('Cycle complete')
        
