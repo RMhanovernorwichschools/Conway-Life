@@ -12,7 +12,6 @@ states=[]
 xvals=[]
 yvals=[]
 index=[]
-rds=0
 
 class Conway(App):
     def __init__(self):
@@ -24,7 +23,7 @@ class Conway(App):
         for x in range(10):
             for n in range(5):
                 z=str(str(x)+'_'+str(n))
-                Cell((8.5+100*x, 32+100*n), z)
+                Cell((8.5+100*x, 32+100*n), z, x, n)
         print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
         print('')
         print('Press "Enter" to start')
@@ -35,13 +34,15 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
+        global index
+        index=[]
         xvals=[]
         yvals=[]
         states=[]
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
-            cell.nextgen()  
+            cell.nextgen() 
         print(index)
         self.step()
         print('Cycle complete')
@@ -52,14 +53,15 @@ nl=LineStyle(0, black)
 
 class Cell(Sprite):
     asset=RectangleAsset(95,95,nl,white)
-    def __init__(self, position, name):
+    def __init__(self, position, name, x, y):
         super().__init__(Cell.asset, position)
         self.name=name
         self.state=0
         self.shift=0
         self.statechange=0
-        self.xval=''
-        self.yval=''
+        self.life=0
+        self.xval=x
+        self.yval=y
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
         Conway.listenMouseEvent("click", self.edit)
@@ -68,9 +70,10 @@ class Cell(Sprite):
         for x in index:
             if x[0]==self.xval:
                 self.state=x[2]
-        if self.statechange!=0:
-            self.state+=self.statechange
+        if self.statechange!=0 or self.life!=0:
+            self.state+=(self.statechange+self.life)
             self.statechange=0
+            self.life=0
             if self.state>0:
                 LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
@@ -92,24 +95,11 @@ class Cell(Sprite):
                 self.statechange=-1
     
     def check(self):
-        global rds
-        if rds==0:
-            n=0
-            for x in range(len(self.name)):
-                if list(self.name)[x]=='_':
-                    n=x
-            self.xval=''
-            self.yval=''
-            for x in range(n):
-                self.xval+=self.name[x]
-            for x in range(len(self.name)-(n+1)):
-                self.yval+=self.name[x+n+1]
-            xvals.append(self.xval)
-            yvals.append(self.yval)
-            states.append(self.state)
-            global index
-            index=(list(zip(xvals, yvals, states)))
-            rds=1
+        xvals.append(self.xval)
+        yvals.append(self.yval)
+        states.append(self.state)
+        global index
+        index=(list(zip(xvals, yvals, states)))
         
     def nextgen(self):
         neighbors=0
@@ -133,13 +123,9 @@ class Cell(Sprite):
             if int(x[0])==(xval-1) and int(x[1])==(yval):
                 neighbors+=x[2]
         if neighbors<2 or neighbors>3:
-            for x in index:
-                if x[0]==self.xval:
-                    x[2]=0
+            self.life=-1
         elif neighbors==3:
-            for x in index:
-                if x[0]==self.xval:
-                    x[2]=1
+            self.life=1
 
 myapp=Conway()
 myapp.run()
