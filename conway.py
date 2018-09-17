@@ -35,10 +35,10 @@ class Conway(App):
     
     def start(self, event):
         global index
-        index=[]
         xvals=[]
         yvals=[]
         states=[]
+        index=[]
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
@@ -58,19 +58,20 @@ class Cell(Sprite):
         self.name=name
         self.state=0
         self.shift=0
+        self.alt=0
         self.statechange=0
         self.life=0
         self.xval=x
         self.yval=y
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
+        Conway.listenKeyEvent("keydown", "a", self.altheld)
+        Conway.listenKeyEvent("keyup", "a", self.alt)
         Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
-        for x in index:
-            if x[0]==self.xval:
-                self.state=x[2]
         if self.statechange!=0 or self.life!=0:
+            print(self.life)
             self.state+=(self.statechange+self.life)
             self.statechange=0
             self.life=0
@@ -86,6 +87,10 @@ class Cell(Sprite):
         self.shift=1
     def shiftrel(self, event):
         self.shift=0
+    def altheld(self, event):
+        self.alt=1
+    def altrel(self, event):
+        self.alt=0
     
     def edit(self, event):
         if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event.y<(self.y+95):
@@ -93,6 +98,8 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
+            if self.alt==1:
+                print(self.state)
     
     def check(self):
         xvals.append(self.xval)
