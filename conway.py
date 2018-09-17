@@ -28,8 +28,9 @@ class Conway(App):
         print('')
         print('Press "Enter" to start')
         Conway.listenKeyEvent("keydown", "enter", self.start)
-                
-    def step(self):
+        Conway.Conway.listenMouseEvent("click", self.step)
+              
+    def step(self, event):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
     
@@ -46,12 +47,6 @@ class Conway(App):
             index=(list(zip(xvals, yvals, states)))
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen() 
-        index.clear()
-        for cell in self.getSpritesbyClass(Cell):
-            xvals.append(cell.xval)
-            yvals.append(cell.yval)
-            states.append(cell.state)
-            index=(list(zip(xvals, yvals, states)))
         print(index)
         self.step()
         print('Cycle complete')
