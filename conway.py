@@ -7,7 +7,6 @@ Write and submit a program that plays Conway's Game of Life, per
 https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
-from time import time, wait
 states=[]
 xvals=[]
 yvals=[]
@@ -34,7 +33,6 @@ class Conway(App):
             cell.step()
             
     def initiate(self, event):
-        time.wait(1)
         self.start()
     
     def start(self):
