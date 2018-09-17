@@ -34,21 +34,22 @@ class Conway(App):
             cell.step()
     
     def start(self, event):
-        global index
-        index=[]
-        xvals=[]
-        yvals=[]
-        states=[]
-        for cell in self.getSpritesbyClass(Cell):
-            xvals.append(cell.xval)
-            yvals.append(cell.yval)
-            states.append(cell.state)
-            index=(list(zip(xvals, yvals, states)))
-        for cell in self.getSpritesbyClass(Cell):
-            cell.nextgen() 
-        print(index)
-        self.refresh()
-        print('Cycle complete')
+        for x in range(5)
+            global index
+            index=[]
+            xvals=[]
+            yvals=[]
+            states=[]
+            for cell in self.getSpritesbyClass(Cell):
+                xvals.append(cell.xval)
+                yvals.append(cell.yval)
+                states.append(cell.state)
+                index=(list(zip(xvals, yvals, states)))
+            for cell in self.getSpritesbyClass(Cell):
+                cell.nextgen() 
+            print(index)
+            self.refresh()
+            print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
