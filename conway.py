@@ -34,6 +34,7 @@ class Conway(App):
             cell.step()
             
     def initiate(self, event):
+        time.wait(1)
         self.start()
     
     def start(self):
