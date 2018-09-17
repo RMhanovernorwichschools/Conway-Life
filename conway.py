@@ -35,10 +35,10 @@ class Conway(App):
     
     def start(self, event):
         global index
+        index.clear()
         xvals=[]
         yvals=[]
         states=[]
-        index=[]
         for cell in self.getSpritesbyClass(Cell):
             cell.check()
         for cell in self.getSpritesbyClass(Cell):
