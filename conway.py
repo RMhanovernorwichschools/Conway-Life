@@ -46,6 +46,7 @@ class Conway(App):
             index=(list(zip(xvals, yvals, states)))
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen() 
+        index=[]
         for cell in self.getSpritesbyClass(Cell):
             xvals.append(cell.xval)
             yvals.append(cell.yval)
