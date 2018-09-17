@@ -54,8 +54,6 @@ white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
-myapp=Conway()
-
 class Cell(Sprite):
     asset=RectangleAsset(95,95,nl,white)
     def __init__(self, position, name, x, y):
@@ -123,4 +121,5 @@ class Cell(Sprite):
         elif neighbors==3:
             self.life=1
 
+myapp=Conway()
 myapp.run()
