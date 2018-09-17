@@ -34,8 +34,7 @@ class Conway(App):
             cell.step()
             
     def initiate(self, event):
-        for x in range(4):
-            self.start()
+        self.start()
     
     def start(self):
             global index
