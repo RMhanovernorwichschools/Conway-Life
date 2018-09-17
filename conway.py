@@ -35,12 +35,16 @@ class Conway(App):
     
     def start(self, event):
         global index
-        index.clear()
+        index=[]
         xvals=[]
         yvals=[]
         states=[]
         for cell in self.getSpritesbyClass(Cell):
-            cell.check()
+            xvals.append(cell.xval)
+            yvals.append(cell.yval)
+            states.append(cell.state)
+            global index                            
+            index=(list(zip(xvals, yvals, states)))
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen() 
         print(index)
@@ -90,13 +94,6 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
-    
-    def check(self):
-        xvals.append(self.xval)
-        yvals.append(self.yval)
-        states.append(self.state)
-        global index
-        index=(list(zip(xvals, yvals, states)))
         
     def nextgen(self):
         neighbors=0
