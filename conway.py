@@ -35,6 +35,7 @@ class Conway(App):
             
     def initiate(self, event):
         self.start()
+        self.start()
     
     def start(self):
             global index
@@ -51,7 +52,6 @@ class Conway(App):
                 cell.nextgen() 
             self.refresh()
             print('Cycle complete')
-            self.initiate()
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
