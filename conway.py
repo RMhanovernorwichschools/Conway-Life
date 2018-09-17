@@ -58,18 +58,20 @@ class Cell(Sprite):
         self.name=name
         self.state=0
         self.shift=0
+        self.alt=0
         self.statechange=0
         self.life=0
         self.xval=x
         self.yval=y
         Conway.listenKeyEvent("keydown", "shift", self.shiftheld)
         Conway.listenKeyEvent("keyup", "shift", self.shiftrel)
-        Conway.listenKeyEvent("keydown", "alt", self.altheld)
+        Conway.listenMouseEvent("click", self.edit)
     
     def step(self):
         if self.statechange!=0 or self.life!=0:
             print(self.life)
             self.state+=(self.statechange+self.life)
+            print(self.state)
             self.statechange=0
             self.life=0
             if self.state>0:
