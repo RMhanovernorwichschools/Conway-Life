@@ -96,10 +96,10 @@ class Cell(Sprite):
         if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event.y<(self.y+95):
             if self.shift==0:
                 self.statechange=1
+            elif self.alt==1:
+                print(str(self.state))
             else:
                 self.statechange=-1
-            if self.alt==1:
-                print(self.state)
     
     def check(self):
         xvals.append(self.xval)
