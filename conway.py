@@ -58,7 +58,6 @@ class Cell(Sprite):
         self.name=name
         self.state=0
         self.shift=0
-        self.alt=0
         self.statechange=0
         self.life=0
         self.xval=x
