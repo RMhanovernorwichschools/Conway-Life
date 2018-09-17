@@ -43,10 +43,14 @@ class Conway(App):
             xvals.append(cell.xval)
             yvals.append(cell.yval)
             states.append(cell.state)
-            global index                            
             index=(list(zip(xvals, yvals, states)))
         for cell in self.getSpritesbyClass(Cell):
             cell.nextgen() 
+        for cell in self.getSpritesbyClass(Cell):
+            xvals.append(cell.xval)
+            yvals.append(cell.yval)
+            states.append(cell.state)
+            index=(list(zip(xvals, yvals, states)))
         print(index)
         self.step()
         print('Cycle complete')
