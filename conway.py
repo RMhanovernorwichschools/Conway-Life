@@ -35,6 +35,7 @@ class Conway(App):
             
     def initiate(self, event):
         self.start()
+        self.refresh()
         self.start()
     
     def start(self):
