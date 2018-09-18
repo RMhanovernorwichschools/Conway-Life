@@ -7,6 +7,7 @@ Write and submit a program that plays Conway's Game of Life, per
 https://github.com/HHS-IntroProgramming/Conway-Life
 """
 from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
+import time
 states=[]
 xvals=[]
 yvals=[]
