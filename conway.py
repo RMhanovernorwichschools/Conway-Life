@@ -35,12 +35,10 @@ class Conway(App):
             
     def initiate(self, event):
         self.start()
-        print('a one')
         a=time.time()
         while True:
             if time.time()>a+1.5:
                 break
-        self.start()
     
     def start(self):
             global index
