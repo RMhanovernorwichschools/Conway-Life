@@ -35,7 +35,7 @@ class Conway(App):
             
     def initiate(self, event):
         self.start()
-        self.refresh()
+        print('a one')
         a=time.time()
         while True:
             if time.time()>a+1.5:
