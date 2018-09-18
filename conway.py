@@ -126,6 +126,8 @@ class Cell(Sprite):
             self.life=-1
         elif neighbors==3:
             self.life=1
+        else:
+            self.life=0
 
 myapp=Conway()
 myapp.run()
