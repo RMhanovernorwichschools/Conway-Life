@@ -26,8 +26,8 @@ class Conway(App):
                 z=str(str(x)+'_'+str(n))
                 Cell((8.5+100*x, 32+100*n), z, x, n)
         print('''To activate a tile, click on it. To deactivate, hold shift while you click.
-        
-        Press "Enter" to start. Press "Enter" again to pause.
+
+Press "Enter" to start. Press "Enter" again to pause.
         
         ''')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
