@@ -27,7 +27,7 @@ class Conway(App):
                 Cell((8.5+100*x, 32+100*n), z, x, n)
         print('To activate a tile, click on it. To deactivate, hold shift while you click.')
         print('')
-        print('Press "Enter" to start')
+        print('Press "Enter" to start. Press "Enter" again to pause.')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
                 
     def step(self):
@@ -35,13 +35,12 @@ class Conway(App):
             cell.step()
         if self.running==1:
             self.start()
-            a=time.time()
-            while time.time()<a+1:
-                a=a
-        
             
     def initiate(self, event):
-        self.running=1
+        if self.running==0:
+            self.running=1
+        else:
+            self.running=0
 
     def start(self):
             global index
