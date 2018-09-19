@@ -65,7 +65,7 @@ black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
-    asset=RectangleAsset(95,95,nl,white)
+    asset=RectangleAsset(98,98,nl,white)
     def __init__(self, position, name, x, y):
         super().__init__(Cell.asset, position)
         self.name=name
@@ -85,12 +85,12 @@ class Cell(Sprite):
             self.statechange=0
             self.life=0
             if self.state>0:
-                LiveCell=RectangleAsset(95,95,nl,black)
+                LiveCell=RectangleAsset(98,98,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
                 self.state=1
             else:
                 self.state=0
-                DeadCell=RectangleAsset(95,95,nl,white)
+                DeadCell=RectangleAsset(98,98,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
     
     def shiftheld(self, event):
@@ -99,7 +99,7 @@ class Cell(Sprite):
         self.shift=0
     
     def edit(self, event):
-        if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event.y<(self.y+95):
+        if event.x>self.x and event.x<(self.x+98) and event.y>self.y and event.y<(self.y+98):
             if self.shift==0:
                 self.statechange=1
             else:
