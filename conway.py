@@ -20,26 +20,14 @@ class Conway(App):
         thin=LineStyle(1, black)
         bg=RectangleAsset(1000, 500, thin, blank)
         Sprite(bg,(8.5, 32))
-        for x in range(20):
-            for n in range(10):
+        for x in range(10):
+            for n in range(5):
                 z=str(str(x)+'_'+str(n))
-                Cell((8.5+50*x, 32+50*n), z, x, n)
+                Cell((8.5+100*x, 32+100*n), z, x, n)
         print('To activate a tile, click on it. To deactivate, hold shift while you click.')
         print('')
         print('Press "Enter" to start')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
-        Conway.listenKeyEvent('keydown', 'i', self.show)
-    
-    def show(self, event):
-        index=[]
-        for cell in self.getSpritesbyClass(Cell):
-                xvals.append(cell.xval)
-                yvals.append(cell.yval)
-                states.append(cell.state)
-                index=(list(zip(xvals, yvals, states)))
-        for x in index:
-            if x[2]==1:
-                print(x)
                 
     def refresh(self):
         for cell in self.getSpritesbyClass(Cell):
@@ -73,7 +61,7 @@ black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
-    asset=RectangleAsset(46,46,nl,white)
+    asset=RectangleAsset(95,95,nl,white)
     def __init__(self, position, name, x, y):
         super().__init__(Cell.asset, position)
         self.name=name
@@ -93,12 +81,12 @@ class Cell(Sprite):
             self.statechange=0
             self.life=0
             if self.state>0:
-                LiveCell=RectangleAsset(46,46,nl,black)
+                LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
                 self.state=1
             else:
                 self.state=0
-                DeadCell=RectangleAsset(46,46,nl,white)
+                DeadCell=RectangleAsset(95,95,nl,white)
                 Sprite(DeadCell, (self.x, self.y))
     
     def shiftheld(self, event):
@@ -107,7 +95,7 @@ class Cell(Sprite):
         self.shift=0
     
     def edit(self, event):
-        if event.x>self.x and event.x<(self.x+46) and event.y>self.y and event.y<(self.y+46):
+        if event.x>self.x and event.x<(self.x+95) and event.y>self.y and event.y<(self.y+95):
             if self.shift==0:
                 self.statechange=1
             else:
