@@ -17,7 +17,7 @@ class Conway(App):
     def __init__(self):
         super().__init__()
         blank=Color(0xffffff, 0.0)
-        thin=LineStyle(1, black)
+        thin=LineStyle(1, blank)
         bg=RectangleAsset(1000, 500, thin, blank)
         Sprite(bg,(8.5, 32))
         self.running=0
@@ -60,8 +60,8 @@ Press "Enter" to start. Press "Enter" again to pause.
             for cell in self.getSpritesbyClass(Cell):
                 cell.nextgen() 
        
-white=Color(0xfff0ff, 1.0)
-black=Color(0x000000, 1.0)
+white=Color(0xFAF7F7, 1.0)
+black=Color(0x234F99, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
