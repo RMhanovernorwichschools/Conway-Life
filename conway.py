@@ -65,7 +65,7 @@ black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
-    asset=ImageAsset("Tiles.png", Frame (0,0, 49, 49), 2, 'horizontal')
+    asset=ImageAsset("Tiles.png", Frame (0,0, 450, 450), 2, 'horizontal')
     def __init__(self, position, name, x, y):
         super().__init__(Cell.asset, position)
         self.scale=0.11
@@ -104,6 +104,7 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
+        self.step()
         
     def nextgen(self):
         neighbors=0
