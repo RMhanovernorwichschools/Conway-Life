@@ -20,6 +20,7 @@ class Conway(App):
         thin=LineStyle(1, black)
         bg=RectangleAsset(1000, 500, thin, blank)
         Sprite(bg,(8.5, 32))
+        self.running=0
         for x in range(10):
             for n in range(5):
                 z=str(str(x)+'_'+str(n))
@@ -32,15 +33,12 @@ class Conway(App):
     def step(self):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
+        if self.running==1:
+            self.start()
+        
             
     def initiate(self, event):
-        for x in range(5):
-            self.start()
-            a=time.time()
-            while True:
-                if time.time()>a+1:
-                    break
-            self.step()
+        self.running=1
 
     def start(self):
             global index
