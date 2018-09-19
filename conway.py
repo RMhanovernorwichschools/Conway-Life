@@ -40,6 +40,7 @@ class Conway(App):
             while True:
                 if time.time()>a+1:
                     break
+            self.step()
 
     def start(self):
             global index
