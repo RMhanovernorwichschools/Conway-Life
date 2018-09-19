@@ -29,17 +29,18 @@ class Conway(App):
         print('Press "Enter" to start')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
                 
-    def refresh(self):
+    def step(self):
         for cell in self.getSpritesbyClass(Cell):
             cell.step()
             
     def initiate(self, event):
-        self.start()
-        a=time.time()
-        while True:
-            if time.time()>a+1:
-                break
-    
+        for x in range(5):
+            self.start()
+            a=time.time()
+            while True:
+                if time.time()>a+1:
+                    break
+
     def start(self):
             global index
             index=[]
@@ -53,7 +54,6 @@ class Conway(App):
                 index=(list(zip(xvals, yvals, states)))
             for cell in self.getSpritesbyClass(Cell):
                 cell.nextgen() 
-            self.refresh()
             print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
@@ -100,7 +100,6 @@ class Cell(Sprite):
                 self.statechange=1
             else:
                 self.statechange=-1
-        myapp.refresh()
         
     def nextgen(self):
         neighbors=0
