@@ -6,7 +6,7 @@ Assignment:
 Write and submit a program that plays Conway's Game of Life, per 
 https://github.com/HHS-IntroProgramming/Conway-Life
 """
-from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset
+from ggame import RectangleAsset, Color, LineStyle, App, Sprite, ImageAsset, Frame
 import time
 states=[]
 xvals=[]
@@ -65,9 +65,11 @@ black=Color(0x000000, 1.0)
 nl=LineStyle(0, black)
 
 class Cell(Sprite):
-    asset=RectangleAsset(49,49,nl,white)
+    asset=ImageAsset("Tiles.png", Frame (0,0, 49, 49), 2, 'horizontal')
     def __init__(self, position, name, x, y):
         super().__init__(Cell.asset, position)
+        self.scale=0.11
+        self.setImage=1
         self.name=name
         self.state=0
         self.shift=0
@@ -85,13 +87,11 @@ class Cell(Sprite):
             self.statechange=0
             self.life=0
             if self.state>0:
-                LiveCell=RectangleAsset(49,49,nl,black)
-                Sprite(LiveCell, (self.x, self.y))
+                self.setImage(1)
                 self.state=1
             else:
                 self.state=0
-                DeadCell=RectangleAsset(49,49,nl,white)
-                Sprite(DeadCell, (self.x, self.y))
+                self.setImage(0)
     
     def shiftheld(self, event):
         self.shift=1
