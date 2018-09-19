@@ -24,10 +24,22 @@ class Conway(App):
             for n in range(5):
                 z=str(str(x)+'_'+str(n))
                 Cell((8.5+100*x, 32+100*n), z, x, n)
-        print('To increase the population of a tile by one, click on it. To decrease the population by one, hold shift while you click.')
+        print('To activate a tile, click on it. To deactivate, hold shift while you click.')
         print('')
         print('Press "Enter" to start')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
+        Conway.listenKeyEvent('keydown', 'i', self.show)
+    
+    def show(self, event):
+        index=[]
+        for cell in self.getSpritesbyClass(Cell):
+                xvals.append(cell.xval)
+                yvals.append(cell.yval)
+                states.append(cell.state)
+                index=(list(zip(xvals, yvals, states)))
+        for x in index:
+            if x[2]==1:
+                print(x)
                 
     def refresh(self):
         for cell in self.getSpritesbyClass(Cell):
@@ -83,6 +95,7 @@ class Cell(Sprite):
             if self.state>0:
                 LiveCell=RectangleAsset(95,95,nl,black)
                 Sprite(LiveCell, (self.x, self.y))
+                self.state=1
             else:
                 self.state=0
                 DeadCell=RectangleAsset(95,95,nl,white)
