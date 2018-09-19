@@ -27,7 +27,9 @@ class Conway(App):
                 Cell((8.5+100*x, 32+100*n), z, x, n)
         print('To activate a tile, click on it. To deactivate, hold shift while you click.')
         print('')
-        print('Press "Enter" to start. Press "Enter" again to pause.')
+        print('''Press "Enter" to start. Press "Enter" again to pause.
+        
+        ''')
         Conway.listenKeyEvent("keydown", "enter", self.initiate)
                 
     def step(self):
@@ -38,8 +40,10 @@ class Conway(App):
             
     def initiate(self, event):
         if self.running==0:
+            print('running')
             self.running=1
         else:
+            print('Paused')
             self.running=0
 
     def start(self):
@@ -55,7 +59,6 @@ class Conway(App):
                 index=(list(zip(xvals, yvals, states)))
             for cell in self.getSpritesbyClass(Cell):
                 cell.nextgen() 
-            print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
 black=Color(0x000000, 1.0)
