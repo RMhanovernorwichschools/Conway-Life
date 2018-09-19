@@ -53,6 +53,9 @@ class Conway(App):
                 index=(list(zip(xvals, yvals, states)))
             for cell in self.getSpritesbyClass(Cell):
                 cell.nextgen() 
+            a=time.time()
+            while time.time()<a+1:
+                a=a
             print('Cycle complete')
        
 white=Color(0xfff0ff, 1.0)
